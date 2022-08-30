@@ -1,0 +1,117 @@
+const events = [
+  {
+    id: '1',
+    title: 'Event titile',
+    description: 'this is description',
+    hostDoctorName: 'Test doctor',
+    duration: '2AM - 4AM',
+    startDate: '22 JAN 2020',
+  },
+  {
+    id: '2',
+    title: 'Event titile',
+    description: 'this is description',
+    hostDoctorName: 'Test doctor',
+    duration: '2AM - 4AM',
+    startDate: '22 JAN 2020',
+  },
+  {
+    id: '3',
+    title: 'Event titile',
+    description: 'this is description',
+    hostDoctorName: 'Test doctor',
+    duration: '2AM - 4AM',
+    startDate: '22 JAN 2020',
+  },
+  {
+    id: '4',
+    title: 'Event titile',
+    description: 'this is description',
+    hostDoctorName: 'Test doctor',
+    duration: '2AM - 4AM',
+    startDate: '22 JAN 2020',
+  },
+  {
+    id: '5',
+    title: 'Event titile',
+    description: 'this is description',
+    hostDoctorName: 'Test doctor',
+    duration: '2AM - 4AM',
+    startDate: '22 JAN 2020',
+  },
+  {
+    id: '6',
+    title: 'Event titile',
+    description: 'this is description',
+    hostDoctorName: 'Test doctor',
+    duration: '2AM - 4AM',
+    startDate: '22 JAN 2020',
+  },
+  {
+    id: '7',
+    title: 'Event titile',
+    description: 'this is description',
+    hostDoctorName: 'Test doctor',
+    duration: '2AM - 4AM',
+    startDate: '22 JAN 2020',
+  },
+  {
+    id: '8',
+    title: 'Event titile',
+    description: 'this is description',
+    hostDoctorName: 'Test doctor',
+    duration: '2AM - 4AM',
+    startDate: '22 JAN 2020',
+  },
+  {
+    id: '9',
+    title: 'Event titile',
+    description: 'this is description',
+    hostDoctorName: 'Test doctor',
+    duration: '2AM - 4AM',
+    startDate: '22 JAN 2020',
+  },
+  {
+    id: '10',
+    title: 'Event titile',
+    description: 'this is description',
+    hostDoctorName: 'Test doctor',
+    duration: '2AM - 4AM',
+    startDate: '22 JAN 2020',
+  },
+]
+
+export const eventFields = [
+  {
+    id: 0,
+    label: 'Enter title',
+    name: 'title',
+    type: 'text',
+  },
+  {
+    id: 1,
+    label: 'Description',
+    name: 'description',
+    type: 'text',
+  },
+  {
+    id: 5,
+    label: 'Host doctor name',
+    name: 'hostDoctorName',
+    type: 'text',
+  },
+  {
+    id: 6,
+    label: 'Enter Duration',
+    name: 'duration',
+    type: 'text',
+  },
+  {
+    id: 6,
+    label: 'Event start date',
+    name: 'startDate',
+    type: 'date',
+  },
+]
+
+export default events

@@ -1,5 +1,5 @@
 {
-  "name": "moramedical-frontend",
+  "name": "moramedical",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,12 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/joy": "^5.0.0-alpha.43",
+    "@mui/material": "^5.10.3",
+    "formik": "^2.2.9",
+    "lodash": "^4.17.21",
     "next": "12.2.5",
+    "next-auth": "^4.10.3",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-toastify": "^9.0.8",
+    "sass": "^1.54.6"
   },
   "devDependencies": {
     "eslint": "8.23.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "12.2.5"
   }
 }

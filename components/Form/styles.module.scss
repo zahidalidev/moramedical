@@ -1,0 +1,55 @@
+@import '../../styles/variables.module.scss' ;
+
+.materialCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+
+  .materialForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .textField {
+      margin-top: 1rem;
+      width: 45vh;
+    }
+
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .warnTypography {
+      color: $error;
+      align-self: flex-start;
+      margin-top: 5px;
+    }
+
+    .submitButton {
+      width: 45vh;
+      margin-top: 2rem;
+      background-color: $primary;
+      text-transform: uppercase;
+    }
+
+    .submitButton:disabled {
+      background-color: $disable;
+    }
+
+    .submitButton:hover {
+      background-color: $secondary;
+    }
+
+    @media screen and (max-width: 450px) {
+      .textField {
+        width: 35vh;
+      }
+
+      .submitButton {
+        width: 35vh;
+      }
+    }
+  }
+}

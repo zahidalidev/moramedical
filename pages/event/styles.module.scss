@@ -1,0 +1,25 @@
+@import '../../styles/variables.module.scss' ;
+
+.addProductContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+
+  .materialPaper {
+    margin-top: 3rem;
+
+    .matCard {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .materialPaper {
+    box-shadow: none !important;
+    width: 94% !important;
+  }
+}
