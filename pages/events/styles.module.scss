@@ -8,12 +8,12 @@
   flex-direction: column;
 
   .eventsContainer {
+    width: 100%;
     margin-top: 2rem;
     display: table;
-    width: 100%;
 
     .card {
-      width: 22%;
+      width: 23%;
       float: left;
       margin: 1rem;
       padding: 1rem;
@@ -36,6 +36,7 @@
       .cardAction {
         display: flex;
         justify-content: space-between;
+        white-space: nowrap;
         margin-bottom: -0.5rem;
       }
     }
