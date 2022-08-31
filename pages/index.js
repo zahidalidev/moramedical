@@ -1,5 +1,3 @@
-import styles from '../styles/Home.module.scss'
-
-const Home = () => <div className={styles.container}>home</div>
+const Home = () => <div>home</div>
 
 export default Home

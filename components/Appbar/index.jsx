@@ -4,7 +4,7 @@ import {
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 
-import menu from 'utils/constants/common'
+import { menu } from 'utils/constants/common'
 
 import styles from './styles.module.scss'
 
@@ -21,7 +21,12 @@ export default () => {
       <AppBar className={styles.appbarBox} position='static'>
         <Toolbar>
           {menu.map((item) => (
-            <Button key={item.name} className={styles.appMenu} onClick={() => router.push(item.path)} color='inherit'>
+            <Button
+              key={item.name}
+              className={styles.appMenu}
+              onClick={() => router.push(item.path)}
+              color='inherit'
+            >
               {item.name}
             </Button>
           ))}

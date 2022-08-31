@@ -1,0 +1,29 @@
+@import '/styles/variables.module.scss';
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 5rem;
+  flex-direction: column;
+
+  .materialPaper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    width: 90%;
+    margin-top: 5rem;
+    padding: 3rem;
+    padding-top: 2rem;
+
+    .materialCard {
+      width: 100%;
+      box-shadow: none;
+    }
+  }
+}
+
+.cancelAcion {
+  color: $error;
+}

@@ -1,4 +1,5 @@
-const menu = [
+export const defaultPageCount = 10
+export const menu = [
   {
     name: 'Login',
     path: '/auth/login',
@@ -11,6 +12,8 @@ const menu = [
     name: 'Create Event',
     path: '/event',
   },
+  {
+    name: 'All attendees',
+    path: '/attendees',
+  },
 ]
-
-export default menu
