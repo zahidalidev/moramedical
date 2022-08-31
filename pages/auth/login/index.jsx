@@ -1,23 +1,20 @@
 import {
   Box, Button, Paper, Typography,
 } from '@mui/material'
-import Image from 'next/image'
-import { useSession, signIn, signOut } from 'next-auth/react'
+// import Image from 'next/image'
+import { useSession, signIn } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 import styles from './styles.module.scss'
 
 const Login = () => {
+  const router = useRouter()
   const { data: session } = useSession()
 
-  if (session) {
-    return (
-      <div className={styles.container}>
-        Welcome user
-        <br />
-        <Button onClick={() => signOut()} className={styles.button} size='large' variant='contained'>Sign out</Button>
-      </div>
-    )
-  }
+  useEffect(() => {
+    if (session) router.push('/events')
+  }, [session])
 
   return (
     <Box className={[styles.container, styles.centerFlex].join(' ')}>
@@ -26,8 +23,8 @@ const Login = () => {
           Login
         </Typography>
         <Button onClick={() => signIn()} className={styles.button} size='large' variant='contained'>
-          <Image src='/images/google.png' alt='google' width='30' height='30' />
-          Continue with Google
+          {/* <Image src='/images/google.png' alt='google' width='30' height='30' /> */}
+          Continue login with
         </Button>
       </Paper>
     </Box>

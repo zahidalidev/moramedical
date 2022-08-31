@@ -1,8 +1,9 @@
 import {
   AppBar, Box, Button, Toolbar,
 } from '@mui/material'
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 import { menu } from 'utils/constants/common'
 
@@ -10,11 +11,17 @@ import styles from './styles.module.scss'
 
 export default () => {
   const router = useRouter()
+  const { data: session } = useSession()
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     signOut()
-    router.push('/auth/login')
   }
+
+  useEffect(() => {
+    if (!session) {
+      router.push('/auth/login')
+    }
+  }, [])
 
   return (
     <Box>
@@ -30,7 +37,7 @@ export default () => {
               {item.name}
             </Button>
           ))}
-          <Button className={styles.appMenu} onClick={() => handleLogout()} color='inherit'>
+          <Button className={styles.appMenu} onClick={handleLogout} color='inherit'>
             Logout
           </Button>
         </Toolbar>
