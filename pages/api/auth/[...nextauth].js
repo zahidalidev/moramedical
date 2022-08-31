@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
+import Users from 'db/models/User'
 
 export default NextAuth({
   providers: [
@@ -20,12 +21,16 @@ export default NextAuth({
   },
   secret: process.env.NEXT_APP_SECRET_TOKEN,
   callbacks: {
-    async jwt(token, account) {
-      const authToken = token
-      if (account?.accessToken) {
-        authToken.accessToken = account.accessToken
-      }
-      return authToken
+    async signIn({ user, account }) {
+      return Users.findOne({ where: { email: user.email } }).then((res) => {
+        const userBody = {
+          name: user.name,
+          access_token: account.access_token,
+          email: user.email,
+          image: user.image,
+        }
+        return res === null ? Users.create(userBody).then(() => true).catch(() => false) : true
+      }).catch(() => false)
     },
     redirect: async (url) => url.url,
   },
