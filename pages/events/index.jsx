@@ -41,6 +41,17 @@ const Events = ({ events }) => {
     setLoading(false)
   }
 
+  const EventSubscribedComponent = ({ id }) => (
+    <>
+      <Button disabled className={styles.subscribedBtn} variant='contained' size='small'>
+        Event Subscribed
+      </Button>
+      <Button onClick={() => handleRemoveSubscription(id)} variant='outlined' size='small'>
+        Unsubscribe event
+      </Button>
+    </>
+  )
+
   return (
     <>
       <AppBar />
@@ -68,16 +79,17 @@ const Events = ({ events }) => {
                 </Box>
               </CardContent>
               <CardActions className={styles.cardAction}>
-                <Button
-                  onClick={() => handleAddSubscription(event.id)}
-                  variant='outlined'
-                  size='small'
-                >
-                  Subscribe event
-                </Button>
-                <Button onClick={() => handleRemoveSubscription(event.id)} variant='outlined' size='small'>
-                  Unsubscribe event
-                </Button>
+                {event.users_events[0]?.user_id ? (
+                  <EventSubscribedComponent id={event.id} />
+                ) : (
+                  <Button
+                    onClick={() => handleAddSubscription(event.id)}
+                    variant='outlined'
+                    size='small'
+                  >
+                    Subscribe event
+                  </Button>
+                )}
               </CardActions>
             </Paper>
           ))}
