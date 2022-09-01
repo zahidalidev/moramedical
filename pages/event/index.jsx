@@ -2,7 +2,6 @@ import { Box, Paper, Typography } from '@mui/material'
 import Card from '@mui/joy/Card'
 import { useState } from 'react'
 import { isEmpty } from 'lodash'
-import { useSession } from 'next-auth/react'
 import { toast } from 'react-toastify'
 
 import { AppBar, LoadingModal, Form } from 'components'
@@ -14,7 +13,6 @@ import styles from './styles.module.scss'
 
 const CreateEvent = () => {
   const [loading, setloading] = useState(false)
-  const { data: session } = useSession()
   const [productFieldsInitialValues] = useState({
     title: '',
     description: '',
@@ -27,7 +25,6 @@ const CreateEvent = () => {
   const handleEvent = async (values) => {
     setloading(true)
     const EventBody = { ...values }
-    EventBody.userEmail = session.user.email
     const response = await addEvent(EventBody)
     if (!isEmpty(response)) {
       toast.success('Event Created')
