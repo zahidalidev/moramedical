@@ -8,11 +8,13 @@ import { AppBar, LoadingModal, Form } from 'components'
 import { eventFields } from 'utils/constants/events'
 import validateEvent from 'utils/validations'
 import { addEvent } from 'api/events'
+import { useSession } from 'next-auth/react'
 
 import styles from './styles.module.scss'
 
 const CreateEvent = () => {
   const [loading, setloading] = useState(false)
+  const { data: session } = useSession()
   const [productFieldsInitialValues] = useState({
     title: '',
     description: '',
@@ -24,6 +26,7 @@ const CreateEvent = () => {
 
   const handleEvent = async (values) => {
     setloading(true)
+    console.log(session)
     const EventBody = { ...values }
     const response = await addEvent(EventBody)
     if (!isEmpty(response)) {
@@ -33,7 +36,6 @@ const CreateEvent = () => {
     }
     setloading(false)
   }
-
   return (
     <>
       <AppBar />

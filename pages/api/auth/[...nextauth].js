@@ -6,19 +6,19 @@ import Users from 'db/models/users'
 export default NextAuth({
   providers: [
     GoogleProvider({
-      clientId: process.env.NEXT_APP_GOOGLE_CLIENT_ID,
-      clientSecret: process.env.NEXT_APP_GOOGLE_CLIENT_SECRET,
-      authorizationUrl: process.env.NEXT_APP_AUTHORIZATION_URL,
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
+      authorizationUrl: process.env.NEXT_PUBLIC_AUTHORIZATION_URL,
     }),
     FacebookProvider({
-      clientId: process.env.NEXT_APP_FACEBOOK_CLIENT_ID,
-      clientSecret: process.env.NEXT_APP_FACEBOOK_CLIENT_SECRET,
+      clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET,
     }),
   ],
   jwt: {
     encryption: true,
   },
-  secret: process.env.NEXT_APP_SECRET_TOKEN,
+  secret: process.env.NEXT_PUBLIC_SECRET_TOKEN,
   callbacks: {
     async signIn({ user, account }) {
       return Users.findOne({ where: { email: user.email } })

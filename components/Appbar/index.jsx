@@ -26,7 +26,6 @@ export default () => {
   function MenuBtn({ item }) {
     return session?.user ? (
       <Button
-        key={item.name}
         className={[styles.appMenu, router.pathname === item.path && styles.activeMenu].join(' ')}
         onClick={() => router.push(item.path)}
         color='inherit'
@@ -47,8 +46,8 @@ export default () => {
       <AppBar className={styles.appbarBox} position='static'>
         <Toolbar>
           {session?.user.is_admin
-            ? adminMenus.map((item) => <MenuBtn item={item} />)
-            : userMenus.map((item) => <MenuBtn item={item} />)}
+            ? adminMenus.map((item) => <MenuBtn key={item.path} item={item} />)
+            : userMenus.map((item) => <MenuBtn key={item.path} item={item} />)}
           {session && logoutBtn}
         </Toolbar>
       </AppBar>
