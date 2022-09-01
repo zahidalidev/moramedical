@@ -21,6 +21,7 @@ const Attendees = ({ attendees }) => {
   }, [])
 
   const handleAction = async (eventId, userId) => {
+    const oldAttendees = [...allAttendees]
     const tempAttendess = allAttendees.filter(
       (item) => item.user_id === userId && item.event_id !== eventId,
     )
@@ -30,6 +31,7 @@ const Attendees = ({ attendees }) => {
     if (!isEmpty(res)) {
       toast.success('Attendee removed')
     } else {
+      setAllAttendees(oldAttendees)
       toast.error('Error, Attendee not removed')
     }
     setLoading(false)

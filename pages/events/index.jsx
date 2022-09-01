@@ -26,6 +26,7 @@ const Events = ({ events }) => {
 
   const handleAddSubscription = async (eventId, index) => {
     setLoading(true)
+    const oldEvents = [...allEvents]
     const tempEvent = [...allEvents]
     tempEvent[index].users_events = [{ user_id: session.user.id }]
     setAllEvents(tempEvent)
@@ -33,6 +34,7 @@ const Events = ({ events }) => {
     if (!isEmpty(res)) {
       toast.success('Event Subscribed')
     } else {
+      setAllEvents(oldEvents)
       toast.error('Event not Subscribed')
     }
     setLoading(false)
@@ -40,6 +42,7 @@ const Events = ({ events }) => {
 
   const handleRemoveSubscription = async (eventId, index) => {
     setLoading(true)
+    const oldEvents = [...allEvents]
     const tempEvent = [...allEvents]
     tempEvent[index].users_events = []
     setAllEvents(tempEvent)
@@ -47,6 +50,7 @@ const Events = ({ events }) => {
     if (!isEmpty(res)) {
       toast.success('Event Unsubscribed')
     } else {
+      setAllEvents(oldEvents)
       toast.error('Event not Unsubscribed')
     }
     setLoading(false)
