@@ -3,7 +3,6 @@ import Users from 'db/models/users'
 
 export default function handler(req, res) {
   const { ids } = req.query
-
   if (req.method === 'POST') {
     Users.findOne({ where: { email: ids[1] } })
       .then(({ dataValues: { id: userId } }) => {

@@ -22,7 +22,10 @@ const UsersEvents = db.sequelize.define(
   { timestamps: false },
 )
 
-User.belongsToMany(Events, { through: UsersEvents })
-Events.belongsToMany(User, { through: UsersEvents })
+User.hasMany(UsersEvents, { foreignKey: 'user_id' })
+UsersEvents.belongsTo(User, { foreignKey: 'user_id' })
+
+Events.hasMany(UsersEvents, { foreignKey: 'event_id' })
+UsersEvents.belongsTo(Events, { foreignKey: 'event_id' })
 
 export default UsersEvents

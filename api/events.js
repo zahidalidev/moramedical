@@ -8,4 +8,4 @@ export const subscribeEvent = (eventId, email) => instance.post(`/event/usereven
 
 export const unsubscribeEvent = (eventId, email) => instance.delete(`/event/userevents/${eventId}/${email}`).then(response => response).catch(() => ({}))
 
-export const fetchSubscribedEvents = () => instance.get('/event/attendees').then(response => response).catch(() => ({}))
+export const fetchSubscribedEvents = () => instance.get('/event/attendees').then(response => response.data).catch(() => ({}))
