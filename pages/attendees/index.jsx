@@ -1,18 +1,30 @@
 import {
   Box, Paper, Typography, Card,
 } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { AppBar } from 'components'
+import { fetchSubscribedEvents, unsubscribeEvent } from 'api/events'
+import { isEmpty } from 'lodash'
+import LoadingModal from 'components/LoadingModal'
 import Table from 'components/Table'
-import { fetchSubscribedEvents } from 'api/events'
+import { toast } from 'react-toastify'
 
 import styles from './styles.module.scss'
 
 const Attendees = ({ attendees }) => {
-  const [loading] = useState(false)
-  const handleAction = (type, id) => {
-    console.log(type, id)
+  const [loading, setLoading] = useState(false)
+
+  const handleAction = async (eventId, userEmail) => {
+    setLoading(true)
+    console.log((eventId, userEmail))
+    const res = await unsubscribeEvent(eventId, userEmail)
+    if (!isEmpty(res)) {
+      toast.success('Event Unsubscribed')
+    } else {
+      toast.error('Event not Unsubscribed')
+    }
+    setLoading(false)
   }
 
   const eventColumns = [
@@ -40,8 +52,11 @@ const Attendees = ({ attendees }) => {
     {
       name: 'Action',
       selector: ({ user, event }) => (
-        <Typography className={styles.cancelAcion} onClick={() => handleAction('remove', user?.id, event?.id)}>
-          Cancel
+        <Typography
+          className={styles.cancelAcion}
+          onClick={() => handleAction(event?.id, user?.email)}
+        >
+          Remove attendee
         </Typography>
       ),
     },
@@ -50,6 +65,7 @@ const Attendees = ({ attendees }) => {
   return (
     <>
       <AppBar />
+      <LoadingModal show={loading} />
       <Box className={styles.container}>
         <Typography variant='h4'>All Event&apos;s Attendees</Typography>
         <Paper className={styles.materialPaper} elevation={2}>

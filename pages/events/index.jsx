@@ -2,21 +2,25 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
+import { isEmpty } from 'lodash'
 import { Paper } from '@mui/material'
 import Typography from '@mui/material/Typography'
-import { isEmpty } from 'lodash'
 import { toast } from 'react-toastify'
+import { useState } from 'react'
 
-import { fetchAllEvents, subscribeEvent, unsubscribeEvent } from 'api/events'
 import { AppBar } from 'components'
+import { fetchAllEvents, subscribeEvent, unsubscribeEvent } from 'api/events'
+import LoadingModal from 'components/LoadingModal'
 import { useSession } from 'next-auth/react'
 
 import styles from './styles.module.scss'
 
 const Events = ({ events }) => {
   const { data: session } = useSession()
+  const [loading, setLoading] = useState(false)
 
   const handleAddSubscription = async (eventId) => {
+    setLoading(true)
     const userEmail = session.user.email
     const res = await subscribeEvent(eventId, userEmail)
     if (!isEmpty(res)) {
@@ -24,9 +28,11 @@ const Events = ({ events }) => {
     } else {
       toast.error('Event not Subscribed')
     }
+    setLoading(false)
   }
 
   const handleRemoveSubscription = async (eventId) => {
+    setLoading(true)
     const userEmail = session.user.email
     const res = await unsubscribeEvent(eventId, userEmail)
     if (!isEmpty(res)) {
@@ -34,11 +40,13 @@ const Events = ({ events }) => {
     } else {
       toast.error('Event not Unsubscribed')
     }
+    setLoading(false)
   }
 
   return (
     <>
       <AppBar />
+      <LoadingModal show={loading} />
       <Box className={styles.container}>
         <Typography variant='h4'>All Public Events</Typography>
         <Box className={styles.eventsContainer}>

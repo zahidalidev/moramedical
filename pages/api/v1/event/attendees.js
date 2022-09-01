@@ -9,7 +9,7 @@ export default function handler(req, res) {
       include: [
         {
           model: Users,
-          attributes: ['name', 'id'],
+          attributes: ['name', 'id', 'email'],
         },
         {
           model: Events,
