@@ -21,8 +21,7 @@ const Events = ({ events }) => {
 
   const handleAddSubscription = async (eventId) => {
     setLoading(true)
-    const userEmail = session.user.email
-    const res = await subscribeEvent(eventId, userEmail)
+    const res = await subscribeEvent(eventId, session.user.id)
     if (!isEmpty(res)) {
       toast.success('Event Subscribed')
     } else {
@@ -33,8 +32,7 @@ const Events = ({ events }) => {
 
   const handleRemoveSubscription = async (eventId) => {
     setLoading(true)
-    const userEmail = session.user.email
-    const res = await unsubscribeEvent(eventId, userEmail)
+    const res = await unsubscribeEvent(eventId, session.user.id)
     if (!isEmpty(res)) {
       toast.success('Event Unsubscribed')
     } else {

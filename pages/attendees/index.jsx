@@ -15,14 +15,13 @@ import styles from './styles.module.scss'
 const Attendees = ({ attendees }) => {
   const [loading, setLoading] = useState(false)
 
-  const handleAction = async (eventId, userEmail) => {
+  const handleAction = async (eventId, userId) => {
     setLoading(true)
-    console.log((eventId, userEmail))
-    const res = await unsubscribeEvent(eventId, userEmail)
+    const res = await unsubscribeEvent(eventId, userId)
     if (!isEmpty(res)) {
-      toast.success('Event Unsubscribed')
+      toast.success('Attendee removed')
     } else {
-      toast.error('Event not Unsubscribed')
+      toast.error('Error, Attendee not removed')
     }
     setLoading(false)
   }
@@ -54,7 +53,7 @@ const Attendees = ({ attendees }) => {
       selector: ({ user, event }) => (
         <Typography
           className={styles.cancelAcion}
-          onClick={() => handleAction(event?.id, user?.email)}
+          onClick={() => handleAction(event?.id, user?.id)}
         >
           Remove attendee
         </Typography>

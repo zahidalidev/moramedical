@@ -4,8 +4,8 @@ export const addEvent = (body) => instance.post('/event/create', body).then(resp
 
 export const fetchAllEvents = () => instance.get('/events').then(response => response.data).catch(() => ([]))
 
-export const subscribeEvent = (eventId, email) => instance.post(`/event/userevents/${eventId}/${email}`).then(response => response).catch(() => ({}))
+export const subscribeEvent = (eventId, userId) => instance.post(`/event/userevents/${eventId}/${userId}`).then(response => response).catch(() => ({}))
 
-export const unsubscribeEvent = (eventId, email) => instance.delete(`/event/userevents/${eventId}/${email}`).then(response => response).catch(() => ({}))
+export const unsubscribeEvent = (eventId, userId) => instance.delete(`/event/userevents/${eventId}/${userId}`).then(response => response).catch(() => ({}))
 
 export const fetchSubscribedEvents = () => instance.get('/event/attendees').then(response => response.data).catch(() => ({}))
