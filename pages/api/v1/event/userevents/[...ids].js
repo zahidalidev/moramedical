@@ -19,8 +19,7 @@ export default function handler(req, res) {
       .catch((error) => {
         res.status(422).json({ message: error.message || 'something went wrong while subscribing event' })
       })
-  }
-  if (req.method === 'DELETE') {
+  } else if (req.method === 'DELETE') {
     Users.findOne({ where: { email: ids[1] } })
       .then(({ dataValues: { id: userId } }) => {
         UsersEvents.destroy({
