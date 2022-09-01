@@ -62,8 +62,8 @@ const Events = ({ events }) => {
                   <Typography className={styles.startDate} size='small'>
                     {event.startDate}
                   </Typography>
-                  <Typography className={styles.duration} size='small'>
-                    from {event.duration}
+                  <Typography size='small'>
+                    from {event.from} - {event.to}
                   </Typography>
                 </Box>
               </CardContent>
