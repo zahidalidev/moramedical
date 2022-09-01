@@ -6,7 +6,7 @@ import { isEmpty } from 'lodash'
 import { Paper } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import { toast } from 'react-toastify'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { AppBar } from 'components'
 import { fetchAllEvents, subscribeEvent, unsubscribeEvent } from 'api/events'
@@ -18,9 +18,17 @@ import styles from './styles.module.scss'
 const Events = ({ events }) => {
   const { data: session } = useSession()
   const [loading, setLoading] = useState(false)
+  const [allEvents, setAllEvents] = useState([])
 
-  const handleAddSubscription = async (eventId) => {
+  useEffect(() => {
+    setAllEvents(events)
+  }, [])
+
+  const handleAddSubscription = async (eventId, index) => {
     setLoading(true)
+    const tempEvent = [...allEvents]
+    tempEvent[index].users_events = [{ user_id: session.user.id }]
+    setAllEvents(tempEvent)
     const res = await subscribeEvent(eventId, session.user.id)
     if (!isEmpty(res)) {
       toast.success('Event Subscribed')
@@ -30,8 +38,11 @@ const Events = ({ events }) => {
     setLoading(false)
   }
 
-  const handleRemoveSubscription = async (eventId) => {
+  const handleRemoveSubscription = async (eventId, index) => {
     setLoading(true)
+    const tempEvent = [...allEvents]
+    tempEvent[index].users_events = []
+    setAllEvents(tempEvent)
     const res = await unsubscribeEvent(eventId, session.user.id)
     if (!isEmpty(res)) {
       toast.success('Event Unsubscribed')
@@ -41,12 +52,12 @@ const Events = ({ events }) => {
     setLoading(false)
   }
 
-  const EventSubscribedComponent = ({ id }) => (
+  const EventSubscribedComponent = ({ id, index }) => (
     <>
       <Button disabled className={styles.subscribedBtn} variant='contained' size='small'>
         Event Subscribed
       </Button>
-      <Button onClick={() => handleRemoveSubscription(id)} variant='outlined' size='small'>
+      <Button onClick={() => handleRemoveSubscription(id, index)} variant='outlined' size='small'>
         Unsubscribe event
       </Button>
     </>
@@ -59,7 +70,7 @@ const Events = ({ events }) => {
       <Box className={styles.container}>
         <Typography variant='h4'>All Public Events</Typography>
         <Box className={styles.eventsContainer}>
-          {events?.map((event) => (
+          {allEvents?.map((event, index) => (
             <Paper key={event.id} elevation={3} className={styles.card}>
               <CardContent>
                 <Typography variant='h5' component='div'>
@@ -80,10 +91,10 @@ const Events = ({ events }) => {
               </CardContent>
               <CardActions className={styles.cardAction}>
                 {event.users_events[0]?.user_id ? (
-                  <EventSubscribedComponent id={event.id} />
+                  <EventSubscribedComponent id={event.id} index={index} />
                 ) : (
                   <Button
-                    onClick={() => handleAddSubscription(event.id)}
+                    onClick={() => handleAddSubscription(event.id, index)}
                     variant='outlined'
                     size='small'
                   >

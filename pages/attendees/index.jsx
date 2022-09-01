@@ -1,7 +1,7 @@
 import {
   Box, Paper, Typography, Card,
 } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { AppBar } from 'components'
 import { fetchSubscribedEvents, unsubscribeEvent } from 'api/events'
@@ -14,8 +14,17 @@ import styles from './styles.module.scss'
 
 const Attendees = ({ attendees }) => {
   const [loading, setLoading] = useState(false)
+  const [allAttendees, setAllAttendees] = useState([])
+
+  useEffect(() => {
+    setAllAttendees(attendees)
+  }, [])
 
   const handleAction = async (eventId, userId) => {
+    const tempAttendess = allAttendees.filter(
+      (item) => item.user_id === userId && item.event_id !== eventId,
+    )
+    setAllAttendees(tempAttendess)
     setLoading(true)
     const res = await unsubscribeEvent(eventId, userId)
     if (!isEmpty(res)) {
@@ -69,7 +78,7 @@ const Attendees = ({ attendees }) => {
         <Typography variant='h4'>All Event&apos;s Attendees</Typography>
         <Paper className={styles.materialPaper} elevation={2}>
           <Card className={styles.materialCard}>
-            <Table data={attendees} count={10} columns={eventColumns} loading={loading} />
+            <Table data={allAttendees} count={10} columns={eventColumns} loading={loading} />
           </Card>
         </Paper>
       </Box>
