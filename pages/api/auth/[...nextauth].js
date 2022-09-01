@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
-import Users from 'db/models/User'
+import Users from 'db/models/users'
 
 export default NextAuth({
   providers: [

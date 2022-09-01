@@ -17,7 +17,7 @@ const Events = () => (
       <Typography variant='h4'>All Public Events</Typography>
       <Box className={styles.eventsContainer}>
         {events.map((event) => (
-          <Paper elevation={3} className={styles.card}>
+          <Paper key={event.id} elevation={3} className={styles.card}>
             <CardContent>
               <Typography variant='h5' component='div'>
                 {event.title}

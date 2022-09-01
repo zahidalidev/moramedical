@@ -97,19 +97,25 @@ export const eventFields = [
   {
     id: 5,
     label: 'Host doctor name',
-    name: 'hostDoctorName',
+    name: 'host_doctor_name',
     type: 'text',
   },
   {
     id: 6,
-    label: 'Enter Duration',
-    name: 'duration',
-    type: 'text',
+    label: 'Select start time',
+    name: 'from',
+    type: 'time',
   },
   {
-    id: 6,
+    id: 7,
+    label: 'Select end time',
+    name: 'to',
+    type: 'time',
+  },
+  {
+    id: 8,
     label: 'Event start date',
-    name: 'startDate',
+    name: 'start_date',
     type: 'date',
   },
 ]

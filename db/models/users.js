@@ -1,10 +1,8 @@
-import { Sequelize, DataTypes } from 'sequelize'
+import { DataTypes } from 'sequelize'
 
-import config from '../config/config'
+import db from './index'
 
-const sequelize = new Sequelize(config.development)
-
-const Users = sequelize.define('users', {
+const Users = db.sequelize.define('users', {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,

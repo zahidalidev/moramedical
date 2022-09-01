@@ -7,14 +7,17 @@ const validateEvent = (values) => {
   if (!values.description) {
     errors.description = 'Description is required'
   }
-  if (!values.hostDoctorName) {
-    errors.hostDoctorName = 'Doctor name is Required'
+  if (!values.host_doctor_name) {
+    errors.host_doctor_name = 'Doctor name is Required'
   }
-  if (!values.duration) {
-    errors.duration = 'Duration is required'
+  if (!values.to) {
+    errors.to = 'Duration is required'
   }
-  if (!values.startDate) {
-    errors.startDate = 'Start date is required'
+  if (!values.from) {
+    errors.from = 'Duration is required'
+  }
+  if (!values.start_date) {
+    errors.start_date = 'Start date is required'
   }
   return errors
 }
