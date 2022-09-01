@@ -1,9 +1,5 @@
 export const defaultPageCount = 10
-export const menu = [
-  {
-    name: 'Login',
-    path: '/auth/login',
-  },
+export const adminMenus = [
   {
     name: 'Events',
     path: '/events',
@@ -15,5 +11,12 @@ export const menu = [
   {
     name: 'All attendees',
     path: '/attendees',
+  },
+]
+
+export const userMenus = [
+  {
+    name: 'Events',
+    path: '/events',
   },
 ]

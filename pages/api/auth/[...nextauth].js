@@ -8,8 +8,7 @@ export default NextAuth({
     GoogleProvider({
       clientId: process.env.NEXT_APP_GOOGLE_CLIENT_ID,
       clientSecret: process.env.NEXT_APP_GOOGLE_CLIENT_SECRET,
-      authorizationUrl:
-        'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code',
+      authorizationUrl: process.env.NEXT_APP_AUTHORIZATION_URL,
     }),
     FacebookProvider({
       clientId: process.env.NEXT_APP_FACEBOOK_CLIENT_ID,

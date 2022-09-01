@@ -5,7 +5,7 @@ import { signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-import { menu } from 'utils/constants/common'
+import { adminMenus, userMenus } from 'utils/constants/common'
 
 import styles from './styles.module.scss'
 
@@ -23,23 +23,33 @@ export default () => {
     }
   }, [])
 
+  function MenuBtn({ item }) {
+    return session?.user ? (
+      <Button
+        key={item.name}
+        className={[styles.appMenu, router.pathname === item.path && styles.activeMenu].join(' ')}
+        onClick={() => router.push(item.path)}
+        color='inherit'
+      >
+        {item.name}
+      </Button>
+    ) : null
+  }
+
+  const logoutBtn = (
+    <Button className={styles.appMenu} onClick={handleLogout} color='inherit'>
+      Logout
+    </Button>
+  )
+
   return (
     <Box>
       <AppBar className={styles.appbarBox} position='static'>
         <Toolbar>
-          {menu.map((item) => (
-            <Button
-              key={item.name}
-              className={styles.appMenu}
-              onClick={() => router.push(item.path)}
-              color='inherit'
-            >
-              {item.name}
-            </Button>
-          ))}
-          <Button className={styles.appMenu} onClick={handleLogout} color='inherit'>
-            Logout
-          </Button>
+          {session?.user.is_admin
+            ? adminMenus.map((item) => <MenuBtn item={item} />)
+            : userMenus.map((item) => <MenuBtn item={item} />)}
+          {session && logoutBtn}
         </Toolbar>
       </AppBar>
     </Box>
