@@ -15,6 +15,9 @@ export default NextAuth({
       clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET,
     }),
   ],
+  pages: {
+    signIn: '/auth/signin',
+  },
   jwt: {
     encryption: true,
   },
