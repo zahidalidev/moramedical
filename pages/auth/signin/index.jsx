@@ -1,11 +1,13 @@
 import Image from 'next/image'
 import {
+  Box, Button, Paper, Typography,
+} from '@mui/material'
+import { LoadingModal } from 'components'
+import {
   signIn, getCsrfToken, getProviders, useSession,
 } from 'next-auth/react'
-import { LoadingModal } from 'components'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { Box, Button, Paper, Typography } from '@mui/material'
 
 import logo from 'public/images/medical.png'
 import backgroundImg from 'public/images/login_pattern.svg'
@@ -56,8 +58,6 @@ const Signin = ({ providers }) => {
   )
 }
 
-export default Signin
-
 export async function getServerSideProps(context) {
   const providers = await getProviders()
   const csrfToken = await getCsrfToken(context)
@@ -68,3 +68,5 @@ export async function getServerSideProps(context) {
     },
   }
 }
+
+export default Signin
