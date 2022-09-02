@@ -1,4 +1,4 @@
-import sendEmail from 'utils/sendEmail'
+import { sendCanceEmail } from 'utils/sendEmail'
 import UsersEvents from 'db/models/usersEvents'
 
 export default function handler(req, res) {
@@ -22,7 +22,7 @@ export default function handler(req, res) {
       },
     }).then(() => {
       if (req.query?.email) {
-        sendEmail(req.query.email, req.query.event)
+        sendCanceEmail(req.query.email, req.query.event)
       }
       res.status(200).json({ message: 'Event Subscribed' })
     }).catch((error) => {
