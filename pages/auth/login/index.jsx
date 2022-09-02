@@ -23,9 +23,9 @@ const Login = () => {
         <Typography className={styles.heading} variant='h3'>
           Login
         </Typography>
-        <Button onClick={() => signIn()} className={styles.button} size='large' variant='contained'>
+        <Button onClick={() => signIn()} className={styles.LoginButton} size='large' variant='contained'>
           {/* <Image src='/images/google.png' alt='google' width='30' height='30' /> */}
-          Continue login with
+          Continue login with social accounts
         </Button>
       </Paper>
     </Box>
