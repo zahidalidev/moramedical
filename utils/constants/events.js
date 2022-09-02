@@ -1,87 +1,4 @@
-const events = [
-  {
-    id: '1',
-    title: 'Event titile',
-    description: 'this is description',
-    hostDoctorName: 'Test doctor',
-    duration: '2AM - 4AM',
-    startDate: '22 JAN 2020',
-  },
-  {
-    id: '2',
-    title: 'Event titile',
-    description: 'this is description',
-    hostDoctorName: 'Test doctor',
-    duration: '2AM - 4AM',
-    startDate: '22 JAN 2020',
-  },
-  {
-    id: '3',
-    title: 'Event titile',
-    description: 'this is description',
-    hostDoctorName: 'Test doctor',
-    duration: '2AM - 4AM',
-    startDate: '22 JAN 2020',
-  },
-  {
-    id: '4',
-    title: 'Event titile',
-    description: 'this is description',
-    hostDoctorName: 'Test doctor',
-    duration: '2AM - 4AM',
-    startDate: '22 JAN 2020',
-  },
-  {
-    id: '5',
-    title: 'Event titile',
-    description: 'this is description',
-    hostDoctorName: 'Test doctor',
-    duration: '2AM - 4AM',
-    startDate: '22 JAN 2020',
-  },
-  {
-    id: '6',
-    title: 'Event titile',
-    description: 'this is description',
-    hostDoctorName: 'Test doctor',
-    duration: '2AM - 4AM',
-    startDate: '22 JAN 2020',
-  },
-  {
-    id: '7',
-    title: 'Event titile',
-    description: 'this is description',
-    hostDoctorName: 'Test doctor',
-    duration: '2AM - 4AM',
-    startDate: '22 JAN 2020',
-  },
-  {
-    id: '8',
-    title: 'Event titile',
-    description: 'this is description',
-    hostDoctorName: 'Test doctor',
-    duration: '2AM - 4AM',
-    startDate: '22 JAN 2020',
-  },
-  {
-    id: '9',
-    title: 'Event titile',
-    description: 'this is description',
-    hostDoctorName: 'Test doctor',
-    duration: '2AM - 4AM',
-    startDate: '22 JAN 2020',
-  },
-  {
-    id: '10',
-    title: 'Event titile',
-    description: 'this is description',
-    hostDoctorName: 'Test doctor',
-    duration: '2AM - 4AM',
-    startDate: '22 JAN 2020',
-  },
-]
-
-export const eventFields = [
+const eventFields = [
   {
     id: 0,
     label: 'Enter title',
@@ -120,4 +37,4 @@ export const eventFields = [
   },
 ]
 
-export default events
+export default eventFields

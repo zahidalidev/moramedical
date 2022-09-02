@@ -27,9 +27,11 @@ const Form = ({
                 className={styles.textField}
                 fullWidth
                 label={field.label}
-                variant='outlined'
                 type={field.type}
                 name={field.name}
+                InputLabelProps={{
+                  shrink: true,
+                }}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values[field.name]}

@@ -1,4 +1,5 @@
 export const defaultPageCount = 10
+
 export const adminMenus = [
   {
     name: 'Events',

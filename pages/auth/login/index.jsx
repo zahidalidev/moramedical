@@ -1,6 +1,7 @@
 import {
   Box, Button, Paper, Typography,
 } from '@mui/material'
+import { LoadingModal } from 'components'
 // import Image from 'next/image'
 import { useSession, signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
@@ -16,7 +17,7 @@ const Login = () => {
     if (session) router.push('/events')
   }, [session])
 
-  return (
+  return session ? <LoadingModal show /> : (
     <Box className={[styles.container, styles.centerFlex].join(' ')}>
       <Paper elevation={3} className={[styles.paper, styles.centerFlex].join(' ')}>
         <Typography className={styles.heading} variant='h3'>

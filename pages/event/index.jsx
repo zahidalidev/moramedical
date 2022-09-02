@@ -1,20 +1,22 @@
 import { Box, Paper, Typography } from '@mui/material'
 import Card from '@mui/joy/Card'
-import { useState } from 'react'
 import { isEmpty } from 'lodash'
 import { toast } from 'react-toastify'
+import { useState } from 'react'
 
 import { AppBar, LoadingModal, Form } from 'components'
-import { eventFields } from 'utils/constants/events'
-import validateEvent from 'utils/validations'
 import { addEvent } from 'api/events'
+import eventFields from 'utils/constants/events'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import validateEvent from 'utils/validations'
 
 import styles from './styles.module.scss'
 
 const CreateEvent = () => {
   const [loading, setloading] = useState(false)
   const { data: session } = useSession()
+  const router = useRouter()
   const [productFieldsInitialValues] = useState({
     title: '',
     description: '',
@@ -26,13 +28,16 @@ const CreateEvent = () => {
 
   const handleEvent = async (values) => {
     setloading(true)
-    console.log(session)
-    const EventBody = { ...values }
-    const response = await addEvent(EventBody)
-    if (!isEmpty(response)) {
-      toast.success('Event Created')
+    if (session) {
+      const EventBody = { ...values }
+      const response = await addEvent(EventBody)
+      if (!isEmpty(response)) {
+        toast.success('Event Created')
+      } else {
+        toast.error('Event not Added')
+      }
     } else {
-      toast.error('Event not Added')
+      router.push('/auth/login')
     }
     setloading(false)
   }

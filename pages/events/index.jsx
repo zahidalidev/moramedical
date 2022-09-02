@@ -12,6 +12,7 @@ import { AppBar } from 'components'
 import { fetchAllEvents, subscribeEvent, unsubscribeEvent } from 'api/events'
 import LoadingModal from 'components/LoadingModal'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 import styles from './styles.module.scss'
 
@@ -19,6 +20,7 @@ const Events = ({ events }) => {
   const { data: session } = useSession()
   const [loading, setLoading] = useState(false)
   const [allEvents, setAllEvents] = useState([])
+  const router = useRouter()
 
   useEffect(() => {
     setAllEvents(events)
@@ -26,32 +28,40 @@ const Events = ({ events }) => {
 
   const handleAddSubscription = async (eventId, index) => {
     setLoading(true)
-    const oldEvents = [...allEvents]
-    const tempEvent = [...allEvents]
-    tempEvent[index].users_events = [{ user_id: session.user.id }]
-    setAllEvents(tempEvent)
-    const res = await subscribeEvent(eventId, session.user.id)
-    if (!isEmpty(res)) {
-      toast.success('Event Subscribed')
+    if (session) {
+      const oldEvents = [...allEvents]
+      const tempEvent = [...allEvents]
+      tempEvent[index].users_events = [{ user_id: session.user.id }]
+      setAllEvents(tempEvent)
+      const res = await subscribeEvent(eventId, session.user.id)
+      if (!isEmpty(res)) {
+        toast.success('Event Subscribed')
+      } else {
+        setAllEvents(oldEvents)
+        toast.error('Event not Subscribed')
+      }
     } else {
-      setAllEvents(oldEvents)
-      toast.error('Event not Subscribed')
+      router.push('/auth/login')
     }
     setLoading(false)
   }
 
   const handleRemoveSubscription = async (eventId, index) => {
     setLoading(true)
-    const oldEvents = [...allEvents]
-    const tempEvent = [...allEvents]
-    tempEvent[index].users_events = []
-    setAllEvents(tempEvent)
-    const res = await unsubscribeEvent(eventId, session.user.id)
-    if (!isEmpty(res)) {
-      toast.success('Event Unsubscribed')
+    if (session) {
+      const oldEvents = [...allEvents]
+      const tempEvent = [...allEvents]
+      tempEvent[index].users_events = []
+      setAllEvents(tempEvent)
+      const res = await unsubscribeEvent(eventId, session.user.id)
+      if (!isEmpty(res)) {
+        toast.success('Event Unsubscribed')
+      } else {
+        setAllEvents(oldEvents)
+        toast.error('Event not Unsubscribed')
+      }
     } else {
-      setAllEvents(oldEvents)
-      toast.error('Event not Unsubscribed')
+      router.push('/auth/login')
     }
     setLoading(false)
   }

@@ -1,5 +1,5 @@
-import UsersEvents from 'db/models/usersEvents'
 import sendEmail from 'utils/sendEmail'
+import UsersEvents from 'db/models/usersEvents'
 
 export default function handler(req, res) {
   const { ids } = req.query
