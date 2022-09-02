@@ -14,14 +14,14 @@ export default () => {
   const { data: session } = useSession()
 
   const handleLogout = async () => {
-    signOut()
+    signOut({ callbackUrl: '/auth/signin' })
   }
 
   useEffect(() => {
     if (!session) {
-      router.push('/auth/login')
+      router.push('/auth/signin')
     }
-  }, [])
+  }, [session])
 
   function MenuBtn({ item }) {
     return session?.user ? (

@@ -49,6 +49,5 @@ export default NextAuth({
         return session
       }).catch(() => false)
     },
-    redirect: async (url) => url.url,
   },
 })

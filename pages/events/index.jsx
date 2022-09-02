@@ -41,7 +41,7 @@ const Events = ({ events }) => {
         toast.error('Event not Subscribed')
       }
     } else {
-      router.push('/auth/login')
+      router.push('/auth/signin')
     }
     setLoading(false)
   }
@@ -61,7 +61,7 @@ const Events = ({ events }) => {
         toast.error('Event not Unsubscribed')
       }
     } else {
-      router.push('/auth/login')
+      router.push('/auth/signin')
     }
     setLoading(false)
   }

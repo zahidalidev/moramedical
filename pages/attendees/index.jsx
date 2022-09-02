@@ -41,7 +41,7 @@ const Attendees = ({ attendees }) => {
       }
       setLoading(false)
     } else {
-      router.push('/auth/login')
+      router.push('/auth/signin')
     }
   }
 

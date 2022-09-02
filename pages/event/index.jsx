@@ -37,7 +37,7 @@ const CreateEvent = () => {
         toast.error('Event not Added')
       }
     } else {
-      router.push('/auth/login')
+      router.push('/auth/signin')
     }
     setloading(false)
   }
