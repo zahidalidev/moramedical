@@ -9,32 +9,40 @@ import { isEmpty } from 'lodash'
 import LoadingModal from 'components/LoadingModal'
 import Table from 'components/Table'
 import { toast } from 'react-toastify'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 import styles from './styles.module.scss'
 
 const Attendees = ({ attendees }) => {
   const [loading, setLoading] = useState(false)
   const [allAttendees, setAllAttendees] = useState([])
+  const { data: session } = useSession()
+  const router = useRouter()
 
   useEffect(() => {
     setAllAttendees(attendees)
   }, [])
 
-  const handleAction = async (eventId, userId) => {
-    const oldAttendees = [...allAttendees]
-    const tempAttendess = allAttendees.filter(
-      (item) => item.user_id === userId && item.event_id !== eventId,
-    )
-    setAllAttendees(tempAttendess)
-    setLoading(true)
-    const res = await unsubscribeEvent(eventId, userId)
-    if (!isEmpty(res)) {
-      toast.success('Attendee removed')
+  const handleAction = async (eventId, userId, email, event) => {
+    if (session) {
+      const oldAttendees = [...allAttendees]
+      const tempAttendess = allAttendees.filter(
+        (item) => item.user_id === userId && item.event_id !== eventId,
+      )
+      setAllAttendees(tempAttendess)
+      setLoading(true)
+      const res = await unsubscribeEvent(eventId, userId, email, event)
+      if (!isEmpty(res)) {
+        toast.success('Attendee removed')
+      } else {
+        setAllAttendees(oldAttendees)
+        toast.error('Error, Attendee not removed')
+      }
+      setLoading(false)
     } else {
-      setAllAttendees(oldAttendees)
-      toast.error('Error, Attendee not removed')
+      router.push('/auth/login')
     }
-    setLoading(false)
   }
 
   const eventColumns = [
@@ -64,7 +72,7 @@ const Attendees = ({ attendees }) => {
       selector: ({ user, event }) => (
         <Typography
           className={styles.cancelAcion}
-          onClick={() => handleAction(event?.id, user?.id)}
+          onClick={() => handleAction(event?.id, user?.id, user?.email, event.title)}
         >
           Remove attendee
         </Typography>

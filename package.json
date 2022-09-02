@@ -38,7 +38,8 @@
     "react-toastify": "^9.0.8",
     "sass": "^1.54.6",
     "sequelize": "^6.21.4",
-    "sqlite3": "^5.0.11"
+    "sqlite3": "^5.0.11",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "eslint": "8.23.0",

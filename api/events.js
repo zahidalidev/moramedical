@@ -6,6 +6,6 @@ export const fetchAllEvents = () => instance.get('/events').then(response => res
 
 export const subscribeEvent = (eventId, userId) => instance.post(`/event/userevents/${eventId}/${userId}`).then(response => response).catch(() => ({}))
 
-export const unsubscribeEvent = (eventId, userId) => instance.delete(`/event/userevents/${eventId}/${userId}`).then(response => response).catch(() => ({}))
+export const unsubscribeEvent = (eventId, userId, email = '', event = '') => instance.delete(`/event/userevents/${eventId}/${userId}?email=${email}&event=${event}`).then(response => response).catch(() => ({}))
 
 export const fetchSubscribedEvents = () => instance.get('/event/attendees').then(response => response.data).catch(() => ({}))
