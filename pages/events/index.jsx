@@ -82,7 +82,7 @@ const Events = ({ events }) => {
       <AppBar />
       <LoadingModal show={loading} />
       <Box className={styles.container}>
-        <Typography variant='h4'>All Public Events</Typography>
+        <Typography align='left' width='98%' variant='h4'>All Public Events</Typography>
         <Box className={styles.eventsContainer}>
           {allEvents?.map((event, index) => (
             <Paper key={event.id} elevation={3} className={styles.card}>

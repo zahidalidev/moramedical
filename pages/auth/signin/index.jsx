@@ -1,10 +1,10 @@
-import Image from 'next/image'
 import {
   Box, Button, Paper, Typography,
 } from '@mui/material'
+import Image from 'next/image'
 import { LoadingModal } from 'components'
 import {
-  signIn, getCsrfToken, getProviders, useSession,
+  signIn, getProviders, useSession,
 } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -58,13 +58,11 @@ const Signin = ({ providers }) => {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
   const providers = await getProviders()
-  const csrfToken = await getCsrfToken(context)
   return {
     props: {
       providers,
-      csrfToken,
     },
   }
 }

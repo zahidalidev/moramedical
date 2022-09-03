@@ -85,7 +85,7 @@ const Attendees = ({ attendees }) => {
       <AppBar />
       <LoadingModal show={loading} />
       <Box className={styles.container}>
-        <Typography variant='h4'>All Event&apos;s Attendees</Typography>
+        <Typography align='left' width='95%' variant='h4'>All Event&apos;s Attendees</Typography>
         <Paper className={styles.materialPaper} elevation={2}>
           <Card className={styles.materialCard}>
             <Table data={allAttendees} count={10} columns={eventColumns} loading={loading} />
