@@ -1,12 +1,12 @@
 import nodemailer from 'nodemailer'
 
-const username = process.env.NEXT_APP_GMAIL_USERNAME
-const password = process.env.NEXT_APP_GMAIL_PASSWORD
+const email = process.env.NEXT_APP_GMAIL_USERNAME
+const password = process.env.NEXT_APP_GMAIL_APP_PASSWORD
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: username,
+    user: email,
     pass: password,
   },
 })
