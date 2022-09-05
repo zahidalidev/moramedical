@@ -23,7 +23,11 @@ const Events = ({ events }) => {
   const router = useRouter()
 
   useEffect(() => {
-    setAllEvents(events)
+    if (!session) {
+      router.push('/auth/signin')
+    } else {
+      setAllEvents(events)
+    }
   }, [])
 
   const handleAddSubscription = async (eventId, index) => {

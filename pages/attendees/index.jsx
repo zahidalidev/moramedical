@@ -21,7 +21,11 @@ const Attendees = ({ attendees }) => {
   const router = useRouter()
 
   useEffect(() => {
-    setAllAttendees(attendees)
+    if (!session) {
+      router.push('/auth/signin')
+    } else {
+      setAllAttendees(attendees)
+    }
   }, [])
 
   const handleAction = async (eventId, userId, email, event) => {
