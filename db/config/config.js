@@ -20,8 +20,6 @@ module.exports = {
     database: process.env.NEXT_PUBLIC_DB_NAME,
     host: process.env.NEXT_PUBLIC_DB_HOST,
     dialect: process.env.NEXT_PUBLIC_DIALECT,
-    dialectOptions: {
-      ssl: true,
-    },
+    logging: true,
   },
 }
